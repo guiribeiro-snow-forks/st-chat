@@ -90,7 +90,6 @@ class Chat extends StreamlitComponentBase {
 
     return (
       <Chat isUser={isUser}>
-        <Avatar src={avatarUrl} alt="profile" draggable="false"/>
         <Message>
           <ReactMarkdown 
             remarkPlugins={remarkPlugins}
