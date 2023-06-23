@@ -25,38 +25,8 @@ else:
         url = "http://localhost:3001"
     )
 
-# data type for avatar style
-AvatarStyle = Literal[
-    "adventurer",
-    "adventurer-neutral",
-    "avataaars",
-    "avataaars-neutral",
-    "big-ears",
-    "big-ears-neutral",
-    "big-smile",
-    "bottts",
-    "bottts-neutral",
-    "croodles",
-    "croodles-neutral",
-    "fun-emoji",
-    "icons",
-    "identicon",
-    "initials",
-    "lorelei",
-    "lorelei-neutral",
-    "micah",
-    "miniavs",
-    "open-peeps",
-    "personas",
-    "pixel-art",
-    "pixel-art-neutral",
-    "shapes",
-    "thumbs",
-]
-
 def message(message: str, 
             is_user: Optional[bool] = False, 
-            avatar_style: Optional[AvatarStyle] = None,
             seed: Optional[Union[int, str]] = 88,
             key: Optional[str] = None,
             allow_html: Optional[bool] = False,
@@ -71,12 +41,6 @@ def message(message: str,
     is_user: bool 
         if the sender of the message is user, if `True` will align the 
         message to right, default is False.
-    avatar_style: Literal or None
-        The style for the avatar of the sender of message, default is bottts
-        for not user, and pixel-art-neutral for user.
-        st-chat uses https://www.dicebear.com/styles for the avatar
-    seed: int or str
-        The seed for choosing the avatar to be used, default is 42.
     key: str or None
         An optional key that uniquely identifies this component. If this is
         None, and the component's arguments are changed, the component will
@@ -84,10 +48,7 @@ def message(message: str,
 
     Returns: None
     """
-    if not avatar_style:
-        avatar_style = "fun-emoji" if is_user else "bottts"
-
-    _streamlit_chat(message=message, seed=seed, isUser=is_user, avatarStyle=avatar_style, key=key, allow_html=allow_html, is_table=is_table)
+    _streamlit_chat(message=message, seed=seed, isUser=is_user, key=key, allow_html=allow_html, is_table=is_table)
 
 
 if not _RELEASE:
